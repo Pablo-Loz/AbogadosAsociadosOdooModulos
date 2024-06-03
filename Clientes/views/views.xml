@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Define la vista -->
+    <record id="view_tree_cliente" model="ir.ui.view">
+        <field name="name">view.tree.cliente</field>
+        <field name="model">clientes.cliente</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Define los campos que se mostrarán en la vista -->
+                <field name="nombre_completo"/>
+                <field name="dni"/>
+                <field name="telefono"/>
+                <field name="direccion"/>
+                <field name="email"/>
+                <field name="localidad"/>
+                <field name="tipo"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de Formulario para Clientes -->
+    <record id="view_cliente_form" model="ir.ui.view">
+        <field name="name">cliente.form</field>
+        <field name="model">clientes.cliente</field>
+        <field name="arch" type="xml">
+            <form string="Vista de Formulario Cliente">
+                <sheet>
+                    <group string="Información del Cliente">
+                        <field name="nombre_completo"/>
+                        <field name="dni"/>
+                        <field name="tipo"/>
+                    </group>
+                    <group string="Información de Contacto">
+                        <field name="telefono"/>
+                        <field name="telefono2"/>
+                        <field name="email"/>
+                    </group>
+                    <group string="Dirección">
+                        <field name="direccion"/>
+                        <field name="direccion2"/>
+                        <field name="localidad"/>
+                        <field name="provincia"/>
+                    </group>
+                    <group string="Observaciones">
+                        <field name="observaciones"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Define la acción de la vista -->
+    <record id="action_view_cliente" model="ir.actions.act_window">
+        <field name="name">Lista Clientes</field>
+        <field name="res_model">clientes.cliente</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Define el menú para acceder a la vista -->
+    <menuitem id="menu_clientes" name="Gestión de Clientes" parent="" action="action_view_cliente"/>
+    <!-- Añadimos la accion de acceder a otro modelo -->
+    <record id="action_view_peritos1" model="ir.actions.act_window">
+        <field name="name">Lista De Peritos</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">peritos.perito</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    <!-- Creamos un menu dentro del modulo de clientes-->
+    <menuitem name="Clientes" id="menu_clientes2" parent="menu_clientes" action="action_view_cliente"/>
+    <menuitem name="Peritos" id="menu_peritos2" parent="menu_clientes" action="action_view_peritos1"/>
+</odoo>

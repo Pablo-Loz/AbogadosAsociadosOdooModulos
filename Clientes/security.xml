@@ -1,0 +1,21 @@
+<odoo>
+    <record id="model_acces_Clientes" model="ir.model.access">
+        <field name="name">model.access.Clientes</field>
+        <field name="model_id" ref="Clientes.model_clientes_cliente"/>
+        <field name="group_id" ref="base.group_system"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <record id="model_access_Peritos" model="ir.model.access">
+        <field name="name">model.access.Peritos</field>
+        <field name="model_id" ref="Clientes.model_peritos_perito"/>
+        <field name="group_id" ref="base.group_system"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+</odoo>

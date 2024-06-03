@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Define la vista -->
+    <record id="view_tree_perito" model="ir.ui.view">
+        <field name="name">view.tree.perito</field>
+        <field name="model">peritos.perito</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Define los campos que se mostrarán en la vista -->
+                <field name="nombre_completo"/>
+                <field name="dni"/>
+                <field name="telefono"/>
+                <field name="direccion"/>
+                <field name="email"/>
+                <field name="localidad"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de Formulario para Trámites -->
+    <record id="view_perito_form" model="ir.ui.view">
+        <field name="name">perito.form</field>
+        <field name="model">peritos.perito</field>
+        <field name="arch" type="xml">
+            <form string="Vista de Formulario Perito">
+                <sheet>
+                    <group string="Informacion del Perito">
+                        <field name="nombre_completo"/>
+                        <field name="dni"/>
+                        <field name="tipo"/>
+                    </group>
+                    <group string="Informacion de Contacto">
+                        <field name="telefono"/>
+                        <field name="telefono2"/>
+                        <field name="email"/>
+                    </group>
+                    <group string="Direccion">
+                        <field name="direccion"/>
+                        <field name="direccion2"/>
+                        <field name="localidad"/>
+                        <field name="provincia"/>
+                    </group>
+                    <group string="Observaciones">
+                        <field name="observaciones"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Define la acción de la vista -->
+    <record id="action_view_perito" model="ir.actions.act_window">
+        <field name="name">Lista Peritos</field>
+        <field name="res_model">peritos.perito</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_peritos" name="Gestion de Peritos" action="action_view_perito"/>
+
+    <record id="action_view_cliente1" model="ir.actions.act_window">
+        <field name="name">Lista Clientes</field>
+        <field name="res_model">clientes.cliente</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Clientes" id="menu_clientes3" parent="menu_peritos" action="action_view_cliente1"/>
+    <menuitem name="Peritos" id="menu_peritos3" parent="menu_peritos" action="action_view_perito"/>
+</odoo>

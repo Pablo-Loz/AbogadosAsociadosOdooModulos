@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Vista de Árbol para Abogados -->
+    <record id="view_abogado_tree" model="ir.ui.view">
+        <field name="name">abogado.tree</field>
+        <field name="model">abogados.abogado</field>
+        <field name="arch" type="xml">
+            <tree string="Vista de Árbol Trámites">
+                <field name="nombre"/>
+                <field name="dni"/>
+                <field name="email"/>
+                <field name="telefono_movil"/>
+                <field name="tipo"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de Formulario para Abogados -->
+    <record id="view_abogado_form" model="ir.ui.view">
+        <field name="name">abogado.form</field>
+        <field name="model">abogados.abogado</field>
+        <field name="arch" type="xml">
+            <form string="Vista de Formulario Abogado">
+                <sheet  string="Informacion">
+                    <group string="Información Personal">
+                        <field name="nombre"/>
+                        <field name="dni"/>
+                        <field name="email"/>
+                        <field name="telefono_fijo"/>
+                        <field name="telefono_movil"/>
+                        <field name="telefono_2"/>
+                        <field name="tipo"/>
+                        <!-- <field name="cliente_ids" widget="many2many_tags"/> -->
+                    </group>
+                    <group string="Dirección">
+                        <field name="direccion"/>
+                        <field name="localidad"/>
+                        <field name="direccion_2"/>
+                        <field name="codigo_postal"/>
+                        <field name="provincia"/>
+                    </group>
+                    <group string="Información Profesional">
+                        <field name="despacho"/>
+                        <field name="colegio"/>
+                        <field name="numero_colegiado"/>
+                    </group>
+                    <group string="Datos Bancarios">
+                        <field name="banco"/>
+                        <field name="banco_cuenta"/>
+                    </group>
+                    <group string="Otros Detalles">
+                        <field name="observaciones"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_abogado" model="ir.actions.act_window">
+        <field name="name">Lista de Abogados</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">abogados.abogado</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="abogados_menu" name="Gestión de Abogados" action="action_abogado"/>
+
+    <record id="action_view_procuradores" model="ir.actions.act_window">
+        <field name="name">Lista Procuradores</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">procuradores.procurador</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Abogados" id="menu_abogado" parent="abogados_menu" action="action_abogado"/>
+    <menuitem name="Procuradores" id="menu_procuradores" parent="abogados_menu" action="action_view_procuradores"/>
+</odoo>
+

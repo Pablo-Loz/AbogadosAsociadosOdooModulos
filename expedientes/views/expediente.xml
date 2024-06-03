@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Define la vista de árbol para expedientes -->
+    <record id="view_tree_expediente" model="ir.ui.view">
+        <field name="name">view.tree.expediente</field>
+        <field name="model">expedientes.expediente</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="descripcion"/>
+                <field name="cierre_expediente"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Define la vista de formulario para expedientes, incluyendo trámites -->
+    <record id="view_form_expediente" model="ir.ui.view">
+        <field name="name">expediente.form</field>
+        <field name="model">expedientes.expediente</field>
+        <field name="arch" type="xml">
+            <form string="Expediente">
+                <sheet>
+                    <notebook>
+                        <page string="Expedientes Normales">
+                            <group string="Informacion del Expediente">
+                                <field name="name"/>
+                                <field name="descripcion"/>
+                            </group>
+                            <group string="Participantes del Expediente">
+                                <field name="cliente"/>
+                                <field name="cliente_contrario"/>
+                                <field name="abogados"/>
+                                <field name="abogados_contrarios"/>
+                                <field name="procurador"/>
+                                <field name="procurador_contrarios"/>
+                                <field name="perito"/>
+                                <field name="perito_contrarios"/>
+                            </group>
+                            <group string="Informacion Detallada">
+                                <field name="juzgado"/>
+                                <field name="aseguradora"/>
+                                <field name="aseguradora_contraria"/>
+                                <field name="jurisdiccion"/>
+                                <field name="asunto_jurisdiccion"/>
+                            </group>
+                            <group string="Extras">
+                                <field name="alta_expediente"/>
+                                <field name="cierre_expediente"/>
+                                <field name="turno_oficio"/>
+                                <field name="fecha_consignacion"/>
+                                <field name="observacion"/>
+                            </group>
+                        </page>
+
+                        <!-- <notebook>-->
+                        <page string="Trámites Asociados">
+                            <field name="tramites_ids">
+                                <tree editable="bottom">
+                                    <field name="name" width="100"/>
+                                    <field name="observaciones" width="100"/>
+                                    <field name="region" width="100"/>
+                                    <field name="Fecha_Presentacion" width="100"/>
+                                    <field name="dias_habiles" width="100" widget="integer"/>
+                                    <field name="Fecha_Vencimiento" width="100"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="Documentos Relacionados">
+                            <field name="documentos_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="archivo" widget="binary" filename="name_document"/>
+                                    <field name="name_document" invisible="1"/>
+                                    <field name="observaciones"/>
+                                    <button name="download_file" type="object" icon="fa-download" string="Descarga de archivo"/>
+                                </tree>
+
+                            </field>
+                        </page>
+                        <!-- </notebook> -->
+                        <!--  </page>-->
+                        <page string="Siniestros">
+                            <group string="Fechas">
+                                <field name="fecha_siniestro"/>
+                                <field name="fecha_denuncia"/>
+                                <field name="fecha_consignacion"/>
+                                <field name="cuantia_materiales"/>
+                                <field name="cuantia_personales"/>
+                                <field name="total_costas"/>
+                            </group>
+                            <group string="Responsabilidades y Costos">
+                                <field name="responsabilidad_civil_directa"/>
+                                <field name="prevision_de_fondos"/>
+                                <field name="importe_suplidos"/>
+                                <field name="importe_honorarios"/>
+                            </group>
+
+                        </page>
+                        <page string="Casos Colectivos">
+                            <group string="Multiples Clientes y/o Abogados" colspan="2">
+                                <group string="Clientes">
+                                    <field name="cliente_colectivo" widget="many2many_tags"/>
+                                    <field name="cliente_contrario_colectivo" widget="many2many_tags"/>
+                                </group>
+                                <group string="Abogados">
+                                    <field name="abogados_colectivo" widget="many2many_tags"/>
+                                    <field name="abogados_contrarios_colectivo" widget="many2many_tags"/>
+                                </group>
+                                <group string="Peritos">
+                                    <field name="peritos" widget="many2many_tags"/>
+                                    <field name="peritos2" widget="many2many_tags"/>
+                                </group>
+                            </group>
+
+                        </page>
+
+                    </notebook>
+                </sheet>
+
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Define la acción de la vista -->
+    <record id="action_view_expediente" model="ir.actions.act_window">
+        <field name="name">Lista de Expedientes</field>
+        <field name="res_model">expedientes.expediente</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="Gestión de Expedientes" id="expedientes.menu_root"/>
+    <!-- menu categories -->
+    <menuitem name="Expedientes" id="expedientes.menu_expedientes" parent="expedientes.menu_root"/>
+    <menuitem name="Trámites" id="expedientes.menu_tramites" parent="expedientes.menu_root"/>
+    <menuitem name="Documentos" id="expedientes.menu_documents" parent="expedientes.menu_root"/>
+    <menuitem name="Abogados" id="expedientes.menu_abogados" parent="expedientes.menu_root"/>
+    <menuitem name="Clientes" id="expedientes.menu_clientes" parent="expedientes.menu_root"/>
+
+    <!-- actions -->
+    <record id="action_view_expediente" model="ir.actions.act_window">
+        <field name="name">Ver Expedientes</field>
+        <field name="res_model">expedientes.expediente</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_view_tramite" model="ir.actions.act_window">
+        <field name="name">Ver Trámites</field>
+        <field name="res_model">tramites.tramite</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_view_document" model="ir.actions.act_window">
+        <field name="name">Ver Documentos</field>
+        <field name="res_model">documents.document</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_view_abogado" model="ir.actions.act_window">
+        <field name="name">Ver Abogados</field>
+        <field name="res_model">abogados.abogado</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_view_clientes" model="ir.actions.act_window">
+        <field name="name">Ver Clientes</field>
+        <field name="res_model">clientes.cliente</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_view_festivos" model="ir.actions.act_window">
+        <field name="name">Ver Festivos</field>
+        <field name="res_model">festivo.festivo</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_view_perito" model="ir.actions.act_window">
+        <field name="name">Lista Peritos</field>
+        <field name="res_model">peritos.perito</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_view_procurador" model="ir.actions.act_window">
+        <field name="name">Lista Procuradores</field>
+        <field name="res_model">procuradores.procurador</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_view_aseguradoras" model="ir.actions.act_window">
+        <field name="name">Lista de Aseguradoras</field>
+        <field name="res_model">aseguradoras.aseguradora</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_view_juzgados" model="ir.actions.act_window">
+        <field name="name">Lista de Juzgados</field>
+        <field name="res_model">juzgados.juzgado</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <menuitem name="Aseguradoras" id="expedientes.menu_aseguradoras" parent="expedientes.menu_root" action="action_view_aseguradoras"/>
+
+    <menuitem name="Juzgados" id="expedientes.menu_juzgados" parent="expedientes.menu_root" action="action_view_juzgados"/>
+
+
+
+    <!-- Link actions to menu items -->
+    <menuitem name="Lista de Expedientes" id="expedientes.menu_expedientes_list" parent="expedientes.menu_expedientes"
+              action="action_view_expediente"/>
+    <menuitem name="Lista de Trámites" id="expedientes.menu_tramites_list" parent="expedientes.menu_tramites"
+              action="action_view_tramite"/>
+    <menuitem name="Lista de Festivos" id="expedientes.menu_festivos_list" parent="expedientes.menu_tramites"
+              action="action_view_festivos"/>
+    <menuitem name="Lista de Documentos" id="expedientes.menu_documents_list" parent="expedientes.menu_documents"
+              action="action_view_document"/>
+    <menuitem name="Lista de Abogados" id="expedientes.menu_abogados_list" parent="expedientes.menu_abogados"
+              action="action_view_abogado"/>
+    <menuitem name="Lista de Procuradores" id="expedientes.menu_procuradores_list" parent="expedientes.menu_abogados"
+              action="action_view_procurador"/>
+    <menuitem name="Lista de Clientes" id="expedientes.menu_clientes_list" parent="expedientes.menu_clientes"
+              action="action_view_clientes"/>
+    <menuitem name="Lista de Peritos/Otros" id="expedientes.menu_peritos_list" parent="expedientes.menu_clientes"
+              action="action_view_perito"/>
+</odoo>

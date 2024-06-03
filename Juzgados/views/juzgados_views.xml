@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Define la vista -->
+    <record id="view_tree_juzgado" model="ir.ui.view">
+        <field name="name">view.tree.juzgado</field>
+        <field name="model">juzgados.juzgado</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Define los campos que se mostrarán en la vista -->
+                <field name="nombre_completo"/>
+                <field name="telefono"/>
+                <field name="direccion"/>
+                <field name="num_auto"/>
+                <field name="observaciones"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de Formulario para Juzgados -->
+    <record id="view_form_juzgado" model="ir.ui.view">
+        <field name="name">juzgado.form</field>
+        <field name="model">juzgados.juzgado</field>
+        <field name="arch" type="xml">
+            <form string="Vista de Formulario Juzgados">
+                <sheet>
+                    <group string="Información del Juzgado">
+                        <field name="nombre_completo"/>
+                        <field name="telefono"/>
+                        <field name="telefono_2"/>
+                        <field name="direccion"/>
+                        <field name="direccion_2"/>
+                        <field name="email"/>
+                        <field name="localidad"/>
+                        <field name="provincia"/>
+                        <field name="num_auto"/>
+                        <field name="banco"/>
+                    </group>
+                    <group string="Información Bancaria">
+                        <field name="numero_de_cuenta"/>
+                        <field name="banco"/>
+                    </group>
+                    <group string="Otras Observaciones">
+                        <field name="observaciones"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_view_juzgados" model="ir.actions.act_window">
+        <field name="name">Lista Juzgados</field>
+        <field name="res_model">juzgados.juzgado</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_juzgado" name="Gestión de Juzgados" action="action_view_juzgados"/>
+</odoo>

@@ -1,0 +1,12 @@
+<!-- archivo: data/sequence.xml -->
+<odoo>
+    <data noupdate="1">
+        <record id="expediente_sequence" model="ir.sequence">
+            <field name="name">Expediente Sequence</field>
+            <field name="code">expedientes.expediente</field>
+            <field name="padding">6</field>
+            <field name="number_increment">1</field>
+            <field name="number_next_actual">1</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Vista de lista para días festivos -->
+    <record id="view_festivo_tree" model="ir.ui.view">
+        <field name="name">festivo.tree</field>
+        <field name="model">festivo.festivo</field>
+        <field name="arch" type="xml">
+            <tree string="Lista de Días Festivos">
+                <field name="nombre"/>
+                <field name="fecha"/>
+                <field name="region"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de formulario para días festivos -->
+    <record id="view_festivo_form" model="ir.ui.view">
+        <field name="name">festivo.form</field>
+        <field name="model">festivo.festivo</field>
+        <field name="arch" type="xml">
+            <form string="Día Festivo">
+                <sheet>
+                    <group string="Informacion del Festivo">
+                        <field name="nombre"/>
+                        <field name="fecha"/>
+                        <field name="region"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción para abrir la vista de lista de Días Festivos -->
+    <record id="action_festivo" model="ir.actions.act_window">
+        <field name="name">Días Festivos</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">festivo.festivo</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_festivos" name="Gestion de Festivos" action="action_festivo"/>
+</odoo>

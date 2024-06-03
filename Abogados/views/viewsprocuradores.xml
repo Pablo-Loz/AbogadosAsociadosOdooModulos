@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Vista de Árbol para Procurador -->
+    <record id="view_procurador_tree" model="ir.ui.view">
+        <field name="name">procurador.tree</field>
+        <field name="model">procuradores.procurador</field>
+        <field name="arch" type="xml">
+            <tree string="Vista de Árbol Procuradores">
+                <field name="dni"/>
+                <field name="nombre_completo"/>
+                <field name="direccion"/>
+                <field name="telefono"/>
+                <field name="provincia"/>
+                <field name="banco"/>
+                <field name="numero_de_cuenta"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de Formulario para Procuradores -->
+    <record id="view_procurador_form" model="ir.ui.view">
+        <field name="name">procurador.form</field>
+        <field name="model">procuradores.procurador</field>
+        <field name="arch" type="xml">
+            <form string="Vista de Formulario Procuradores">
+                <sheet>
+                    <notebook>
+                        <page string="Datos personales">
+                            <group string="Información Personal">
+                                <field name="dni"/>
+                                <field name="nombre_completo"/>
+                                <field name="tipo"/>
+                            </group>
+                            <group string="Información Profesional">
+                                <field name="colegios"/>
+                                <field name="colegiado"/>
+                                <field name="despacho"/>
+                            </group>
+                            <group string="Información Bancaria">
+                                <field name="banco"/>
+                                <field name="numero_de_cuenta"/>
+                            </group>
+                        </page>
+                        <page string="1º Dirección">
+                            <group string="Dirección y Contacto">
+                                <field name="direccion"/>
+                                <field name="telefono"/>
+                                <field name="email"/>
+                                <field name="poblacion"/>
+                                <field name="provincia"/>
+                                <field name="codigo_postal"/>
+                                <field name="web"/>
+                            </group>
+                        </page>
+                        <page string="2º Dirección">
+                            <group string="Dirección y Contacto">
+                                <field name="direccion_2"/>
+                                <field name="telefono_2"/>
+                                <field name="poblacion_2"/>
+                                <field name="provincia_2"/>
+                                <field name="codigo_postal_2"/>
+                                <field name="web_2"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción para abrir la vista de árbol de Procuradores -->
+    <record id="action_procuradores" model="ir.actions.act_window">
+        <field name="name">Lista de Procuradores</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">procuradores.procurador</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem id="procurador_menu" name="Gestión de Procuradores Bueno" action="action_procuradores" sequence="10"/>
+</odoo>

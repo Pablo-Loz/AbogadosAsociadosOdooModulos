@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Vista de Árbol para Trámites -->
+    <record id="view_tramite_tree" model="ir.ui.view">
+        <field name="name">tramite.tree</field>
+        <field name="model">tramites.tramite</field>
+        <field name="arch" type="xml">
+            <tree string="Vista de Árbol Trámites">
+                <field name="name"/>
+                <field name="expediente_id"/>
+                <field name="descripcion"/>
+                <field name="observaciones"/>
+                <field name="Fecha_Vencimiento"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Vista de Formulario para Trámites -->
+    <record id="view_tramite_form" model="ir.ui.view">
+        <field name="name">tramite.form</field>
+        <field name="model">tramites.tramite</field>
+        <field name="arch" type="xml">
+            <form string="Vista de Formulario Trámite">
+                <sheet>
+                    <group string="Informacion General del Tramite">
+                        <field name="name"/>
+                        <field name="expediente_id"/>
+                        <!-- <field name="expediente_descripcion"/>-->
+                        <!-- <field name="expediente_descripcion2"/>-->
+                        <field name="crear_expediente"/>
+                        <field name="descripcion"/>
+                    </group>
+                    <group string="Informan de Fechas">
+                        <field name="region"/>
+                        <field name="Fecha_Presentacion"/>
+                        <field name="Fecha_Inicio"/>
+                        <field name="dias_habiles"/>
+                        <field name="Fecha_Vencimiento"/>
+                        <field name="crear_en_calendario" string="Crear evento en calendario"/>
+                    </group>
+                    <group string="Otras Observaciones">
+                        <field name="observaciones"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Acción para abrir la vista de árbol de Trámites -->
+    <record id="action_tramite" model="ir.actions.act_window">
+        <field name="name">Trámites</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">tramites.tramite</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Elemento de menú para Trámites -->
+    <menuitem id="tramite_menu" name="Gestion de Trámites" action="action_tramite" sequence="10"/>
+</odoo>
+

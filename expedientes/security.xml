@@ -1,0 +1,45 @@
+<odoo>
+    <record id="model_acces_expedientes" model="ir.model.access">
+        <field name="name">model.access.expedientes</field>
+        <field name="model_id" ref="expedientes.model_expedientes_expediente"/>
+        <field name="group_id" ref="base.group_system"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+    <!-- Permiso para el modelo de Trámites -->
+    <record id="model_access_tramites" model="ir.model.access">
+        <field name="name">model.access.tramites</field>
+        <field name="model_id" ref="expedientes.model_tramites_tramite"/>
+        <field name="group_id" ref="base.group_system"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+    <!-- Permiso para el modelo de Documentos -->
+    <record id="model_acces_document" model="ir.model.access">
+        <field name="name">model.access.document</field>
+        <field name="model_id" ref="expedientes.model_documents_document"/>
+        <field name="group_id" ref="base.group_system"/>
+        <field name="perm_read" eval="1"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="1"/>
+        <field name="perm_unlink" eval="1"/>
+    </record>
+
+    <odoo>
+    <!-- Permiso para el modelo de Festivos -->
+    <record id="model_access_festivo" model="ir.model.access">
+        <field name="name">model.access.festivo</field>
+        <field name="model_id" ref="expedientes.model_festivo_festivo"/>
+        <field name="group_id" ref="base.group_system"/>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>
+
+</odoo>

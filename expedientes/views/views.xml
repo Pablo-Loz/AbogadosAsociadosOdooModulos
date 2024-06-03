@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Define la vista -->
+    <record id="view_tree_document" model="ir.ui.view">
+        <field name="name">view.tree.document</field>
+        <field name="model">documents.document</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Define los campos que se mostrarán en la vista -->
+                <field name="name"/>
+                <field name="cliente"/>
+                <field name="fecha_subida"/>
+                <field name="fecha_asignacion_cliente"/>
+                <field name="fecha_asignacion_expediente"/>
+                <field name="archivo" widget="binary" filename="namedocument"/>
+                <field name="name_document"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="view_form_document" model="ir.ui.view">
+        <field name="name">documents.document.form</field>
+        <field name="model">documents.document</field>
+        <field name="arch" type="xml">
+            <form string="Document">
+                <sheet>
+                    <group string="Informacion del Documento">
+                        <field name="name"/>
+                        <field name="cliente"/>
+                        <field name="fecha_asignacion_cliente"/>
+                        <field name="expediente"/>
+                        <field name="fecha_asignacion_expediente"/>
+                        <field name="archivo"  widget="binary" filename="namedocument" />
+                        <field name="name_document" invisible="1"/>
+                        <field name="fecha_subida"/>
+                    </group>
+
+                    <group string="Observaciones">
+                        <field name="observaciones"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Define la acción de la vista -->
+    <record id="action_view_document" model="ir.actions.act_window">
+        <field name="name">Lista Documentos</field>
+        <field name="res_model">documents.document</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Define el menú para acceder a la vista -->
+    <menuitem id="menu_documento" name="Gestion de Documentos" parent="" action="action_view_document"/>
+</odoo>
